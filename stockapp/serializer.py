@@ -11,3 +11,12 @@ class PurchaseProductSerializer(serializers.ModelSerializer):
         model=Purchaseproduct
         fields ='__all__'
 
+class GstSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gst
+        fields = '__all__'
+
+class ShopSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shop
+        fields = '__all__'

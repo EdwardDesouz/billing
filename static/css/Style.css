@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(249, 250, 250);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #f8f9fa; 
+    padding: 15px;
+    width: 100%;
+    height: 100vh; 
+    overflow-y: auto; 
+    position: fixed; /* Make the sidebar fixed */
+}
+
+.flex-grow-1 {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px; /* Leave space for the sidebar */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fbfbff; 
+    padding: 10px 20px; 
+    border-bottom: 1px solid rgba(10, 0, 0, 0.1);
+}
+
+.search-container {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid rgba(10, 0, 0, 0.1);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.icon img,
+.dropdown button {
+    width: 24px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    background-color: white;
+    border: 1px solid rgba(10, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; 
+}
+
+.main-content {
+    padding: 20px;
+    flex-grow: 1; 
+    margin-left: 250px; /* Leave space for the sidebar */
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        position: relative; /* Make sidebar stack with content */
+        height: auto; /* Reset height */
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .flex-grow-1 {
+        margin-left: 0; /* No margin when sidebar is stacked */
+    }
+
+    .navbar {
+        flex-direction: column; 
+        align-items: flex-start; /* Align items to start */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .search-container {
+        margin-right: 0; /* Remove margin for smaller screens */
+        width: 100%; /* Full width */
+    }
+
+    .icon, .dropdown {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add top margin for spacing */
+    }
+}

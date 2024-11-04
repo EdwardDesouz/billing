@@ -1,10 +1,55 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
-from .serializer import ProductSerializer,PurchaseProductSerializer
+from .serializer import *
 from .models import Product,Purchaseproduct
 from rest_framework.decorators import api_view, permission_classes
 
+
+def test(request):
+    return render(request,'InpaymentList.html')
+
+def test1(request):
+    return render(request,'home.html')
+
+def test2(request):
+    return render(request,'products.html')
+
+def test3(request):
+    return render(request,'adminHome.html')
+
+def loader(request):
+    return render(request,'loader.html')
+
+def admin(request):
+    return render(request,'admin.html')
+
+def trailnav(request):
+    return render(request,'layout.html')
+
+def dashboard(request):
+    return render(request,'dashboard.html')
+
+def admindashboard(request):
+    return render(request,'admindashboard.html')
+
+def salesdashboard(request):
+    return render(request,'salesdashboard.html')
+
+def createProduct(request):
+    return render(request,'createproduct.html')
+
+def lowStocks(request):
+    return render(request,'lowstockes.html')
+
+def outofStocks(request):
+    return render(request,'outofstocks.html')
+
+def category(request):
+    return render(request,'category.html')
+
+def subcategory(request):
+    return render(request,'subCategory.html')
 
 #get all products
 @api_view(['GET'])
@@ -88,7 +133,39 @@ def purcahseProduct(request):
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
-#
+# Get all GST records
+@api_view(['GET'])
+def getAllGst(request):
+    all_gst = Gst.objects.all()
+    serializer = GstSerializer(all_gst, many=True)
+    return Response(serializer.data)
+
+# Add new GST
+@api_view(['POST'])
+def addNewGst(request):
+    serializer = GstSerializer(data=request.data)
+    if serializer.is_valid():
+        gst = serializer.save()
+        return Response(GstSerializer(gst).data, status=201)
+    return Response(serializer.errors, status=400)
+
+# Get all Shop records
+@api_view(['GET'])
+def getAllShops(request):
+    all_shops = Shop.objects.all()
+    serializer = ShopSerializer(all_shops, many=True)
+    return Response(serializer.data)
+
+# Add new Shop
+@api_view(['POST'])
+def addNewShop(request):
+    serializer = ShopSerializer(data=request.data)
+    if serializer.is_valid():
+        shop = serializer.save()
+        return Response(ShopSerializer(shop).data, status=201)
+    return Response(serializer.errors, status=400)
+
+
 
 
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Dashboard on Button Click</title>
+    <style>
+        #dashboard {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            opacity: 1; 
+            transition: opacity 0.5s ease;
+        }
+        #dashboard.hidden {
+            opacity: 0; 
+            pointer-events: none;
+        }
+        #toggleButton {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button id="toggleButton">Toggle Dashboard</button>
+<div id="dashboard">
+    <h2>Dashboard</h2>
+    <p>This is your dashboard content.</p>
+</div>
+
+<script>
+    const toggleButton = document.getElementById('toggleButton');
+    const dashboard = document.getElementById('dashboard');
+    let isVisible = true; 
+
+    toggleButton.addEventListener('click', () => {
+        if (isVisible) {
+            dashboard.classList.add('hidden'); 
+        } else {
+            dashboard.classList.remove('hidden'); 
+        }
+        isVisible = !isVisible; 
+    });
+</script>
+
+</body>
+</html>

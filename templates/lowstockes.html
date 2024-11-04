@@ -1,0 +1,46 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="{% static 'css/trail.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+    {% block content %}
+
+    <h2>Low Stocks</h2>
+    <h4>Manage your low stocks</h4>
+    <div class="search-container">
+        <input type="text" placeholder="Search products..." required>
+        <button type="submit">Search</button>
+    </div>
+    <table class="table" id="product-table">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Stock Count</th>
+                <th>Purchasing Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/product.js' %}"></script>
+    {% endblock %}
+
+</body>
+
+</html>

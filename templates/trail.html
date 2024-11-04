@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Example</title>
+    <style>
+        .autocomplete-suggestions {
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            z-index: 1000;
+            background-color: white;
+            width: 100%;
+        }
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestion:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="autocomplete-input" placeholder="Type to search...">
+<div id="suggestions" class="autocomplete-suggestions"></div>
+
+<script>
+    const suggestions = [
+        'Apple',
+        'Banana',
+        'Cherry',
+        'Date',
+        'Fig',
+        'Grape',
+        'Honeydew',
+        'Kiwi',
+        'Lemon',
+        'Mango',
+        'Nectarine',
+        'Orange',
+        'Papaya',
+        'Quince',
+        'Raspberry',
+        'Strawberry',
+        'Tomato',
+        'Ugli fruit',
+        'Vanilla',
+        'Watermelon',
+    ];
+
+    const input = document.getElementById('autocomplete-input');
+    const suggestionsContainer = document.getElementById('suggestions');
+
+    input.addEventListener('input', function() {
+        const value = this.value.toLowerCase();
+        suggestionsContainer.innerHTML = '';
+
+        if (value) {
+            const filteredSuggestions = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().startsWith(value)
+            );
+
+            filteredSuggestions.forEach(suggestion => {
+                const div = document.createElement('div');
+                div.textContent = suggestion;
+                div.classList.add('autocomplete-suggestion');
+                div.addEventListener('click', function() {
+                    input.value = suggestion;
+                    suggestionsContainer.innerHTML = '';
+                });
+                suggestionsContainer.appendChild(div);
+            });
+        }
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!suggestionsContainer.contains(event.target) && event.target !== input) {
+            suggestionsContainer.innerHTML = '';
+        }
+    });
+</script>
+
+</body>
+</html>
